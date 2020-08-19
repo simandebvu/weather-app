@@ -34,6 +34,9 @@ const appDisplay = () => {
     searchBar.classList.add('form-control', 'mr-sm-2');
     searchBar.setAttribute('type', 'text');
     searchBar.setAttribute('name', 'search');
+    searchBar.required = true;
+    searchBar.setAttribute('minlength', '5');
+    searchBar.setAttribute('maxlength', '30');
     searchBar.setAttribute('placeholder', 'Enter a city name');
     searchBar.setAttribute('aria-label', 'Search');
     const searchButton = document.createElement('button');
@@ -47,9 +50,110 @@ const appDisplay = () => {
 
 
     headerContainer.appendChild(navContainer);
+
+    const mainElement = document.createElement('main');
+    mainElement.setAttribute('role', 'main');
+    mainElement.classList.add('pt-5', 'mt-5');
+    const containerDiv = document.createElement('div');
+    containerDiv.classList.add('container');
+    mainElement.appendChild(containerDiv);
     body.appendChild(headerContainer);
+    body.appendChild(mainElement);
   };
-  return { insertNavigationBar };
+
+  const insertSearchResults = (cityName, cityConditions, cityTemp, tempSymbol) => {
+    const containerDiv = document.querySelector('.container');
+    const mainElement = document.querySelector('main');
+    containerDiv.innerHTML = null;
+    const element = document.createElement('div');
+    element.classList.add('result-item');
+    const welcomeHeader = document.createElement('h2');
+    welcomeHeader.classList.add('display-4', 'font-bold');
+    welcomeHeader.innerHTML = `${cityName} : ${cityConditions}.`;
+    element.appendChild(welcomeHeader);
+
+    const cardContainer = document.createElement('div');
+    cardContainer.classList.add('card', 'flex-md-row', 'box-shadow', 'h-md-250');
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body', 'd-flex', 'flex-column', 'align-items-start');
+    const cardBanner = document.createElement('h2');
+    cardBanner.classList.add('d-inline-block', 'mb-2', 'text-primary', 'temp-banner', 'is-metric');
+    cardBanner.innerHTML = cityTemp;
+    const tempSpan = document.createElement('span');
+    tempSpan.classList.add('temp-symbol');
+    tempSpan.innerHTML = tempSymbol;
+    cardBanner.appendChild(tempSpan);
+
+    const toggleTemperature = document.createElement('button');
+    toggleTemperature.classList.add('btn', 'btn-success', 'btn-temp');
+    toggleTemperature.innerText = 'Convert to F (Imperial)';
+    const date = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+    const repositoryDate = document.createElement('div');
+    repositoryDate.classList.add('mb-1', 'text-muted');
+    repositoryDate.innerHTML = `Happy ${date}!`;
+    const repositoryDescription = document.createElement('p');
+    repositoryDescription.classList.add('card-text', 'mb-auto');
+    repositoryDescription.innerHTML = 'Feel free to visit my repo!';
+    cardBody.appendChild(cardBanner);
+
+
+    cardBody.appendChild(toggleTemperature);
+
+
+    cardBody.appendChild(repositoryDate);
+    cardBody.appendChild(repositoryDescription);
+    const cardImage = document.createElement('img');
+    cardImage.classList.add('card-img-right', 'flex-auto', 'd-none', 'd-md-block');
+    cardImage.setAttribute('style', 'width: 250px; height: 250px;');
+    cardImage.setAttribute('src', 'https://via.placeholder.com/150');
+    cardImage.setAttribute('alt', 'My Awesome Image!');
+    cardContainer.appendChild(cardImage);
+    cardContainer.appendChild(cardBody);
+    element.appendChild(cardContainer);
+    containerDiv.appendChild(element);
+    mainElement.appendChild(containerDiv);
+  };
+
+  const insertError = (value) => {
+    const body = document.querySelector('body');
+    const mainElement = document.querySelector('main');
+    const containerDiv = document.querySelector('.container');
+    containerDiv.innerHTML = null;
+    const headerText = document.createElement('h1');
+    headerText.textContent = value;
+
+    containerDiv.appendChild(headerText);
+    mainElement.appendChild(containerDiv);
+    body.appendChild(mainElement);
+  };
+
+  const changeTempAttributes = (bannerRemove, bannerAdd, btnRemove, btnAdd, btnText) => {
+    const cardBanner = document.querySelector('.temp-banner');
+    const toggle = document.querySelector('.btn-temp');
+    cardBanner.classList.remove(bannerRemove);
+    cardBanner.classList.add(bannerAdd);
+    toggle.classList.remove(btnRemove);
+    toggle.classList.add(btnAdd);
+    toggle.innerHTML = btnText;
+  };
+
+  const toggleTemperature = () => {
+    const cardBanner = document.querySelector('.temp-banner');
+    const currentTempReading = parseFloat(cardBanner.innerHTML).toFixed(2);
+    let newTemp = 0;
+    if (cardBanner.classList.contains('is-metric')) {
+      changeTempAttributes('is-metric', 'is-imperial', 'btn-success', 'btn-info', 'Convert to C (Metric)');
+      newTemp = `${((currentTempReading * 1.8) + 32).toFixed(2)} F`;
+    } else {
+      changeTempAttributes('is-imperial', 'is-metric', 'btn-info', 'btn-success', 'Convert to F (Imperial)', 'F');
+      newTemp = `${((currentTempReading - 32) / 1.8).toFixed(2)}°C`;
+    }
+    cardBanner.innerHTML = newTemp;
+  };
+
+  return {
+    insertNavigationBar, insertSearchResults, insertError, toggleTemperature,
+  };
 };
 
 export default appDisplay;
