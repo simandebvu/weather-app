@@ -1,57 +1,72 @@
-# Project Name
+# Woogle
 
-> One paragraph statement about the project.
 
-![screenshot](./app_screenshot.png)
+<br />
+<p align="center">
+  <a href="https://github.com/simandebvu/weather-app">
+    <img src="js-image.png" alt="Logo" width="80" height="80">
+  </a>
 
-Additional description about the project and its features.
+  <h3 align="center">Weathers Own Google</h3>
+
+  <p align="center">
+    <a href="https://github.com/simandebvu/weather-app/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/simandebvu/weather-app/issues/">Report Bug</a>
+    ·
+    <a href="https://github.com/simandebvu/weather-app/">Request Feature</a>
+  </p>
+</p>
+
+> Woogle allows the user to search for a specific location by typing a city name in the search input. Initially the temperature will be displayed in Celsius degrees, and by clicking on the toggle button temperature it toggles between Celsius and Fahrenheit temperatures.
+
+> If the city name does not exist or is misspelled the ES6 Promises will then catch the error and will inform the user about it.
+
+![screenshot](./app-screenshot.gif)
 
 ## Built With
 
-- Major languages,
-- frameworks,
-- technologies used
+- Javascript
+- Node
+- Webpack 
+- Bootstrap
+- VSCode
+- ESLint
+- Stylelint
+- Github Actions
 
+## Prerequisites
+
+- Node ^10
+- npm ^6
+  
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://github.com/simandebvu/weather-app/)
 
 
-## Getting Started
+## Running Locally
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+Clone the repo:
 
+`git clone https://github.com/simandebvu/weather-app.git`
 
-To get a local copy up and running follow these simple example steps.
+Inside the root folder of the project, install the node packages:
 
-### Prerequisites
+`npm install`
 
-### Setup
+Go to the root folder and run the npm server script:
 
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
-
+`npm run server`
+  
 ## Authors
 
-👤 **Author1**
+👤 **Shingirayi Mandebvu**
 
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
-
-👤 **Author2**
-
-- Github: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- Linkedin: [linkedin](https://linkedin.com/linkedinhandle)
+- Github: [@simandebvu](https://github.com/simandebvu)
+- Twitter: [@simandebvu](https://twitter.com/simandebvu)
+- Linkedin: [linkedin](https://linkedin.com/in/simandebvu)
 
 ## 🤝 Contributing
 
@@ -65,9 +80,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Microverse
 
 ## 📝 License
 

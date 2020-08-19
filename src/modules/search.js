@@ -2,12 +2,12 @@ import appDisplay from './display';
 import appConfig from './config';
 
 const searchForm = () => {
-  const initSearch = (searchText) => {
+  const initSearch = (searchText, units = 'metric') => {
     const config = appConfig();
     const display = appDisplay();
     const weatherAPIKey = config.getAPIKey();
     const weatherAPISite = config.getWeatherURL();
-    const weatherRequestURL = `${weatherAPISite}q=${searchText}&APPID=${weatherAPIKey}&units=metric`;
+    const weatherRequestURL = `${weatherAPISite}q=${searchText}&APPID=${weatherAPIKey}&units=${units}`;
 
     const initTemperatureListener = () => {
       const toggle = document.querySelector('.btn-temp');
