@@ -45,8 +45,9 @@ const searchForm = () => {
     const form = document.querySelector('.form-inline');
     form.onsubmit = (e) => {
       e.preventDefault();
+      const units = 'metric';
       const { search } = e.target.elements;
-      const processInput = initSearch(search.value, 'metric');
+      const processInput = initSearch(search.value, units);
       processInput.startSearch();
       e.target.reset();
     };
