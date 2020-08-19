@@ -46,7 +46,7 @@ const searchForm = () => {
     form.onsubmit = (e) => {
       e.preventDefault();
       const { search } = e.target.elements;
-      const processInput = initSearch(search.value);
+      const processInput = initSearch(search.value, 'metric');
       processInput.startSearch();
       e.target.reset();
     };
