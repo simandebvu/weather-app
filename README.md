@@ -43,7 +43,7 @@
   
 ## Live Demo
 
-[Live Demo Link](https://github.com/simandebvu/weather-app/)
+[Live Demo Link](https://simandebvu.github.io/weather-app/)
 
 
 ## Running Locally
