@@ -1,3 +1,5 @@
+import bender from '../assets/images/neat.jpg';
+
 const appDisplay = () => {
   const insertNavigationBar = () => {
     const body = document.querySelector('body');
@@ -61,7 +63,25 @@ const appDisplay = () => {
     body.appendChild(mainElement);
   };
 
-  const insertSearchResults = (cityName, cityConditions, cityTemp, tempSymbol) => {
+  const insertWelcomeBanner = () => {
+    const containerDiv = document.querySelector('.container');
+    containerDiv.innerHTML = null;
+    const containerJumbo = document.createElement('div');
+    containerJumbo.classList.add('jumbotron', 'jumbotron-fluid');
+    const divJumbo = document.createElement('div');
+    divJumbo.classList.add('container');
+    const headerJumbo = document.createElement('header');
+    headerJumbo.classList.add('display-4');
+    const pJumbo = document.createElement('p');
+    pJumbo.classList.add('lead');
+    pJumbo.textContent = 'Welcome to woogle! Weather\'s own google! The Weather App tests the knowledge about asynchronous communication with promises or async/await and when to use them. Feel free to search above!';
+    divJumbo.appendChild(headerJumbo);
+    divJumbo.appendChild(pJumbo);
+    containerJumbo.appendChild(divJumbo);
+    containerDiv.appendChild(containerJumbo);
+  };
+
+  const insertSearchResults = (cityName, cityConditions, cityTemp, tempSymbol, cityPicture) => {
     const containerDiv = document.querySelector('.container');
     const mainElement = document.querySelector('main');
     containerDiv.innerHTML = null;
@@ -105,7 +125,7 @@ const appDisplay = () => {
     const cardImage = document.createElement('img');
     cardImage.classList.add('card-img-right', 'flex-auto', 'd-none', 'd-md-block');
     cardImage.setAttribute('style', 'width: 250px; height: 250px;');
-    cardImage.setAttribute('src', 'https://via.placeholder.com/150');
+    cardImage.setAttribute('src', cityPicture);
     cardImage.setAttribute('alt', 'My Awesome Image!');
     cardContainer.appendChild(cardImage);
     cardContainer.appendChild(cardBody);
@@ -114,15 +134,24 @@ const appDisplay = () => {
     mainElement.appendChild(containerDiv);
   };
 
-  const insertError = (value) => {
+  const insertError = (value, portfolioURL) => {
     const body = document.querySelector('body');
     const mainElement = document.querySelector('main');
     const containerDiv = document.querySelector('.container');
     containerDiv.innerHTML = null;
     const headerText = document.createElement('h1');
     headerText.textContent = value;
+    const linkText = document.createElement('a');
+    linkText.setAttribute('href', portfolioURL);
+    linkText.textContent = 'But you can find me on GITHUB by clicking here.';
+    const benderImage = document.createElement('img');
+    benderImage.classList.add('mt-3', 'card-img-right', 'flex-auto', 'd-none', 'd-md-block');
+    benderImage.setAttribute('src', bender);
+    benderImage.setAttribute('alt', 'Bender is supposed to be here!');
 
     containerDiv.appendChild(headerText);
+    containerDiv.appendChild(linkText);
+    containerDiv.appendChild(benderImage);
     mainElement.appendChild(containerDiv);
     body.appendChild(mainElement);
   };
@@ -152,7 +181,7 @@ const appDisplay = () => {
   };
 
   return {
-    insertNavigationBar, insertSearchResults, insertError, toggleTemperature,
+    insertNavigationBar, insertSearchResults, insertError, toggleTemperature, insertWelcomeBanner,
   };
 };
 

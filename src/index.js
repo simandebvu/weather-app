@@ -9,4 +9,5 @@ const runApp = (() => {
   display.insertNavigationBar();
   const searchListener = search();
   searchListener.initListener();
+  display.insertWelcomeBanner();
 })();
