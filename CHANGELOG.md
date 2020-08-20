@@ -12,3 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GIF in search results
 - Validation on empty search text, too few characters and too many characters
 - Link to developers repository
+
+### Fixed
+- Use HTTPS for API Calls
+- Separate logic for loading from giphy
