@@ -37,7 +37,7 @@ const appDisplay = () => {
     searchBar.setAttribute('type', 'text');
     searchBar.setAttribute('name', 'search');
     searchBar.required = true;
-    searchBar.setAttribute('minlength', '5');
+    searchBar.setAttribute('minlength', '3');
     searchBar.setAttribute('maxlength', '30');
     searchBar.setAttribute('placeholder', 'Enter a city name');
     searchBar.setAttribute('aria-label', 'Search');
