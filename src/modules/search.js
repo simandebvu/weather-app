@@ -17,13 +17,17 @@ const searchForm = () => {
     };
 
     const loadPictureFromGiphy = async (cityConditions) => {
-      const pictureAPIKey = config.getGiphyAPIKey();
-      const pictureAPISite = config.getGiphyURL();
-      const pictureRequestURL = `${pictureAPISite}q=${cityConditions}&api_key=${pictureAPIKey}&limit=1`;
-      const picture = await fetch(pictureRequestURL, { mode: 'cors' });
-      const pictureResults = await picture.json();
-      const cityPicture = pictureResults.data[0].images.original.url;
-      return cityPicture;
+      try {
+        const pictureAPIKey = config.getGiphyAPIKey();
+        const pictureAPISite = config.getGiphyURL();
+        const pictureRequestURL = `${pictureAPISite}q=${cityConditions}&api_key=${pictureAPIKey}&limit=1`;
+        const picture = await fetch(pictureRequestURL, { mode: 'cors' });
+        const pictureResults = await picture.json();
+        const cityPicture = pictureResults.data[0].images.original.url;
+        return cityPicture;
+      } catch (error) {
+        throw new Error(error.message);
+      }
     };
 
     const startSearch = async () => {
