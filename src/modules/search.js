@@ -15,6 +15,17 @@ const searchForm = () => {
         display.toggleTemperature();
       };
     };
+
+    const loadPictureFromGiphy = async (cityConditions) => {
+      const pictureAPIKey = config.getGiphyAPIKey();
+      const pictureAPISite = config.getGiphyURL();
+      const pictureRequestURL = `${pictureAPISite}q=${cityConditions}&api_key=${pictureAPIKey}&limit=1`;
+      const picture = await fetch(pictureRequestURL, { mode: 'cors' });
+      const pictureResults = await picture.json();
+      const cityPicture = pictureResults.data[0].images.original.url;
+      return cityPicture;
+    };
+
     const startSearch = async () => {
       try {
         const response = await fetch(weatherRequestURL, { mode: 'cors' });
@@ -22,14 +33,10 @@ const searchForm = () => {
         const results = await response.json();
 
         const cityName = `${results.name}, ${results.sys.country}`;
-        const pictureAPIKey = config.getGiphyAPIKey();
-        const pictureAPISite = config.getGiphyURL();
+
         const cityConditions = results.weather[0].main;
-        const pictureRequestURL = `${pictureAPISite}q=${cityConditions}&api_key=${pictureAPIKey}&limit=1`;
-        const picture = await fetch(pictureRequestURL, { mode: 'cors' });
-        const pictureResults = await picture.json();
+        const cityPicture = await loadPictureFromGiphy(cityConditions);
         const cityTemp = results.main.temp;
-        const cityPicture = pictureResults.data[0].images.original.url;
         const tempSymbol = '°C';
         display.insertSearchResults(cityName, cityConditions, cityTemp, tempSymbol, cityPicture);
         initTemperatureListener(cityTemp);
