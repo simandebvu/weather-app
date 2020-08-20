@@ -74,7 +74,7 @@ const appDisplay = () => {
     headerJumbo.classList.add('display-4');
     const pJumbo = document.createElement('p');
     pJumbo.classList.add('lead');
-    pJumbo.textContent = 'Welcome to woogle! Weather\'s own google! The Weather App tests the knowledge about asynchronous communication with promises or async/await and when to use them. Feel free to search above!';
+    pJumbo.textContent = 'Welcome to woogle! Weather\'s own google! The Weather App tests the knowledge about asynchronous communication with promises or async/await and when to use them. Feel free to search above! This project makes API Calls to Open Weather API and Giphy.';
     divJumbo.appendChild(headerJumbo);
     divJumbo.appendChild(pJumbo);
     containerJumbo.appendChild(divJumbo);

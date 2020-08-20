@@ -45,7 +45,10 @@
 
 [Live Demo Link](https://simandebvu.github.io/weather-app/)
 
+## API
 
+- This project makes API Calls to Open Weather API and Giphy.
+  
 ## Running Locally
 
 Clone the repo:
